@@ -1,7 +1,23 @@
 <?php
 
-echo "GET:";
-print_r($_GET);
+require_once('REST.php');
 
-echo "POST:";
-print_r($_POST);
+class API extends REST
+{
+
+    function __construct(){
+        $this->process();
+    }
+
+    function customer(){
+        $c = array(
+            "Markus Chiarot",
+            "Max Muster",
+            "Yet Another Person"
+        );
+        $this->respond($c, 200);
+    }
+
+}
+
+new API();
