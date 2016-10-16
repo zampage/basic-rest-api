@@ -5,7 +5,6 @@
  * Allows API to extend this set of tools for parsing requests
  *
  * @author Markus Chiarot, zampage.com
- *
  */
 
 class REST
@@ -69,6 +68,16 @@ class REST
     function process(){
         $func = strtolower(trim(str_replace("/","",$_REQUEST['x'])));
         ((int)method_exists($this, $func) > 0) ? $this->$func() : $this->respond('', 404);
+    }
+
+    /**
+     * checks if the request is a specific method
+     *
+     * @param string $method the method you want to check
+     * @return bool
+     */
+    function isMethod($method){
+        return $method == $this->getMethod();
     }
 
     /**
